@@ -23,8 +23,8 @@ static CGFloat const kMargin                                = 20.0f;
         pos.x += kMargin;
         pos.y += kMargin;
         for (NSString *keyword in keywords) {
-            ZXWKeywordItem *item = [[ZXWKeywordItem alloc] initWithValue:keyword position:pos];
-            item.borderColor = [UIColor yellowColor];
+//            ZXWKeywordItem *item = [[ZXWKeywordItem alloc] initWithValue:keyword position:pos];
+            ZXWKeywordItem *item = [[ZXWKeywordItem alloc] initWithValue:keyword position:pos size:(CGSize){60, 20}];
             if (item.frame.size.width + pos.x > totalWidth) {
                 pos.x = kMargin;
                 pos.y += kMargin + item.frame.size.height;
@@ -44,26 +44,29 @@ static CGFloat const kMargin                                = 20.0f;
 - (void)drawRect:(CGRect)rect {
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     for (ZXWKeywordItem *item in self.items) {
-        [item.value drawInRect:item.frame withAttributes:item.attrs];
+        [item.value drawWithRect:item.frame
+                         options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin
+                      attributes:item.attrs
+                         context:NULL];
         if (item.selected) {
             CGContextAddPath(contextRef, item.borderPath.CGPath);
-            if (item.borderColor) {
-                [item.borderColor setStroke];
+            if (self.borderColor) {
+                [self.borderColor setStroke];
                 CGContextStrokePath(contextRef);
             }
-            if (item.selectedBackgroundColor) {
-                [item.selectedBackgroundColor setFill];
+            if (self.selectedBackgroundColor) {
+                [self.selectedBackgroundColor setFill];
                 CGContextFillPath(contextRef);
             }
         }
         else {
             CGContextAddPath(contextRef, item.borderPath.CGPath);
-            if (item.borderColor && !item.onlyShowBorderOnSelection) {
-                [item.borderColor setStroke];
+            if (self.borderColor && !self.onlyShowBorderOnSelection) {
+                [self.borderColor setStroke];
                 CGContextStrokePath(contextRef);
             }
-            if (item.normalBackgroundColor) {
-                [item.normalTextColor setFill];
+            if (self.normalBackgroundColor) {
+                [self.normalTextColor setFill];
                 CGContextFillPath(contextRef);
             }
         }
@@ -84,6 +87,8 @@ static CGFloat const kMargin                                = 20.0f;
             item.selected = YES;
             touchedItem = YES;
         }
+        UIColor *fontColor = item.selected ? self.selectedTextColor : self.normalTextColor;
+        [item addAttributeName:NSForegroundColorAttributeName value:fontColor];
     }
     if (touchedItem) {
         [self setNeedsDisplay];

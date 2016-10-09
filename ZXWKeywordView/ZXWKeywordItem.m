@@ -58,10 +58,10 @@ static CGFloat const kBorderPadding                         = 5.0f;
     
     [self __initBorderPath];
     
-    _normalTextColor = ntColor;
-    _normalBackgroundColor = nbgColor;
-    _selectedTextColor = stColor;
-    _selectedBackgroundColor = sbgColor;
+//    _normalTextColor = ntColor;
+//    _normalBackgroundColor = nbgColor;
+//    _selectedTextColor = stColor;
+//    _selectedBackgroundColor = sbgColor;
 }
 
 - (void)__initBorderPath {
@@ -81,11 +81,11 @@ static CGFloat const kBorderPadding                         = 5.0f;
     [self __initBorderPath];
 }
 
-- (void)setSelected:(BOOL)selected {
-    _selected = selected;
-    UIColor *fontColor = selected ? self.selectedTextColor : self.normalTextColor;
-    [self addAttributeName:NSForegroundColorAttributeName value:fontColor];
-}
+//- (void)setSelected:(BOOL)selected {
+//    _selected = selected;
+//    UIColor *fontColor = selected ? self.selectedTextColor : self.normalTextColor;
+//    [self addAttributeName:NSForegroundColorAttributeName value:fontColor];
+//}
 
 - (void)addAttributeName:(NSString *)attrName value:(id)value {
     if (value && attrName) {
