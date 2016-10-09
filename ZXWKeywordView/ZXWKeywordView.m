@@ -10,7 +10,7 @@
 #import "ZXWKeywordItem.h"
 
 static CGFloat const kMargin                                = 20.0f;
-static CGFloat const kBorderPadding                         = 5.0f;
+//static CGFloat const kBorderPadding                         = 5.0f;
 
 @implementation ZXWKeywordView
 
@@ -24,6 +24,7 @@ static CGFloat const kBorderPadding                         = 5.0f;
         pos.y += kMargin;
         for (NSString *keyword in keywords) {
             ZXWKeywordItem *item = [[ZXWKeywordItem alloc] initWithValue:keyword position:pos];
+            item.borderColor = [UIColor yellowColor];
             if (item.frame.size.width + pos.x > totalWidth) {
                 pos.x = kMargin;
                 pos.y += kMargin + item.frame.size.height;
@@ -41,10 +42,30 @@ static CGFloat const kBorderPadding                         = 5.0f;
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
+    CGContextRef contextRef = UIGraphicsGetCurrentContext();
     for (ZXWKeywordItem *item in self.items) {
         [item.value drawInRect:item.frame withAttributes:item.attrs];
         if (item.selected) {
-            [self __drawBorderForItem:item];
+            CGContextAddPath(contextRef, item.borderPath.CGPath);
+            if (item.borderColor) {
+                [item.borderColor setStroke];
+                CGContextStrokePath(contextRef);
+            }
+            if (item.selectedBackgroundColor) {
+                [item.selectedBackgroundColor setFill];
+                CGContextFillPath(contextRef);
+            }
+        }
+        else {
+            CGContextAddPath(contextRef, item.borderPath.CGPath);
+            if (item.borderColor && !item.onlyShowBorderOnSelection) {
+                [item.borderColor setStroke];
+                CGContextStrokePath(contextRef);
+            }
+            if (item.normalBackgroundColor) {
+                [item.normalTextColor setFill];
+                CGContextFillPath(contextRef);
+            }
         }
     }
 }
@@ -69,18 +90,8 @@ static CGFloat const kBorderPadding                         = 5.0f;
     }
 }
 
-- (void)__drawBorderForItem:(ZXWKeywordItem *)item {
-    CGContextRef contextRef = UIGraphicsGetCurrentContext();
-    CGRect frame = item.frame;
-    frame.size.width += kBorderPadding * 2;
-    frame.size.height += kBorderPadding;
-    frame.origin.y -= kBorderPadding / 2;
-    frame.origin.x -= kBorderPadding;
-    CGFloat radius = CGRectGetHeight(frame) / 2;
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:radius];
-    [[UIColor yellowColor] setStroke];
-    CGContextAddPath(contextRef, path.CGPath);
-    CGContextStrokePath(contextRef);
+- (void)__drawSelectedForItem:(ZXWKeywordItem *)item {
+    
 }
 
 @end

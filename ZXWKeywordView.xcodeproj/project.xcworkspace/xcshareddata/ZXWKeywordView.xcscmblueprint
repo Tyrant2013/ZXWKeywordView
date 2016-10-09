@@ -4,23 +4,16 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "05D2A993CB8B0DE0DA645D253B16CF48130DB828" : 9223372036854775807,
     "B20E8E1403BA934F7FBE73E4855893AAD79233B1" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2B7D71B1-ECB1-41CD-AFF1-E36F1402D3B4",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "05D2A993CB8B0DE0DA645D253B16CF48130DB828" : "",
     "B20E8E1403BA934F7FBE73E4855893AAD79233B1" : "ZXWKeywordView\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "ZXWKeywordView",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ZXWKeywordView.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Tyrant2013\/ZXWAudioPlayer.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "05D2A993CB8B0DE0DA645D253B16CF48130DB828"
-    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Tyrant2013\/ZXWKeywordView.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
