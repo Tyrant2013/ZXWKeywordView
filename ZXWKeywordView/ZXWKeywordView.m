@@ -172,6 +172,9 @@ static CGFloat const kItemSpace                                         = 15.0f;
     NSUInteger line = 0;
     CGPoint pos = (CGPoint){kMargin, kMargin};
     for (ZXWKeywordItem *item in self.items) {
+        if (CGRectGetWidth(item.frame) > maxWidth) {
+            [item resizeWidth:maxWidth];
+        }
         if (CGRectGetWidth(item.frame) + pos.x > placeWidth) {
             pos.x = kMargin;
             pos.y += kLineSpace + CGRectGetHeight(item.frame);
@@ -179,9 +182,6 @@ static CGFloat const kItemSpace                                         = 15.0f;
             ++line;
         }
         [item setPostion:pos];
-        if (CGRectGetWidth(item.frame) > maxWidth) {
-            [item resizeWidth:maxWidth];
-        }
         pos.x += CGRectGetWidth(item.frame) + [marginPerLine[@(line)] floatValue];
     }
     _realHeight = realHeight;
