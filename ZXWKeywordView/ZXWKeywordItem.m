@@ -58,10 +58,10 @@ static CGFloat const kBorderPadding                         = 5.0f;
     
     [self __initBorderPath];
     
-//    _normalTextColor = ntColor;
-//    _normalBackgroundColor = nbgColor;
-//    _selectedTextColor = stColor;
-//    _selectedBackgroundColor = sbgColor;
+    //    _normalTextColor = ntColor;
+    //    _normalBackgroundColor = nbgColor;
+    //    _selectedTextColor = stColor;
+    //    _selectedBackgroundColor = sbgColor;
 }
 
 - (void)__initBorderPath {
@@ -70,7 +70,8 @@ static CGFloat const kBorderPadding                         = 5.0f;
     frame.size.height += kBorderPadding;
     frame.origin.y -= kBorderPadding / 2;
     frame.origin.x -= kBorderPadding;
-    CGFloat radius = CGRectGetHeight(frame) / 2;
+    //    CGFloat radius = CGRectGetHeight(frame) / 2;
+    CGFloat radius = 5.0f;
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:radius];
     _borderPath = path;
 }
@@ -81,11 +82,10 @@ static CGFloat const kBorderPadding                         = 5.0f;
     [self __initBorderPath];
 }
 
-//- (void)setSelected:(BOOL)selected {
-//    _selected = selected;
-//    UIColor *fontColor = selected ? self.selectedTextColor : self.normalTextColor;
-//    [self addAttributeName:NSForegroundColorAttributeName value:fontColor];
-//}
+- (void)resizeWidth:(CGFloat)width {
+    _frame.size.width = width;
+    [self __initBorderPath];
+}
 
 - (void)addAttributeName:(NSString *)attrName value:(id)value {
     if (value && attrName) {

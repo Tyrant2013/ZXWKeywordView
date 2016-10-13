@@ -24,37 +24,39 @@
 
 /**
  初始化方法
-
+ 
  @param val 需要显示的文本
  @param pos 显示的位置
-
- @return ZXWKeywordItem 对象
+ 
+ @return ALKeywordItem 对象
  */
 - (instancetype)initWithValue:(NSString *)val position:(CGPoint)pos;
 
 /**
  初始化方法，可以指定文本杠的大小，超出部分隐藏
-
+ 
  @param val  需要显示的文本
  @param pos  显示的位置
  @param size 显示大小，为CGSizeZero时表示不限制大小
-
- @return ZXWKeywordItem 对象
+ 
+ @return ALKeywordItem 对象
  */
 - (instancetype)initWithValue:(NSString *)val position:(CGPoint)pos size:(CGSize)size;
 
 
 /**
  设置显示的位置
-
+ 
  @param pos 新的显示位置
  */
 - (void)setPostion:(CGPoint)pos;
 
+- (void)resizeWidth:(CGFloat)width;
+
 
 /**
  添加文本设置
-
+ 
  @param attrName 属性名
  @param value    属性值
  */
